@@ -1,0 +1,2 @@
+g++ compute_fft.cpp -o compute_fft -lfftw3 
+Time taken to execute fft (excluding time taken to generate input): 62700264279
