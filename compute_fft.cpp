@@ -4,16 +4,18 @@ using namespace std;
 using clock_type = chrono::high_resolution_clock;
   
 void compute_fft(long long n, int num_threads){
-  omp_set_num_threads(num_threads)
+  omp_set_num_threads(num_threads);
 	fftw_complex *in, *out;
 	fftw_plan p;
 	cout << "size of each fft is: " << n << "\n";
   cout << "executing with " << num_threads << " threads\n";
-  #pragma omp parallel {
+  
+  auto start = clock_type::now();
+  #pragma omp parallel 
+  {
     in = (fftw_complex*) fftw_malloc(sizeof(fftw_complex) * n);
     out = (fftw_complex*) fftw_malloc(sizeof(fftw_complex) * n);
     populate_input(n, in);
-    auto start = clock_type::now();
     cout << "segfault happened here2\n";
     p = fftw_plan_dft_1d(n, in, out, FFTW_FORWARD, FFTW_ESTIMATE);
     cout << "segfault happened before execute, after plan\n";
@@ -32,8 +34,8 @@ void compute_fft(long long n, int num_threads){
     fftw_destroy_plan(p);
     fftw_free(in); fftw_free(out);
   }
-  auto end = clock_type::now();
-  auto interval = end - start;
+  auto end_time = clock_type::now();
+  auto interval = end_time - start;
   auto duration = chrono::duration_cast<chrono::nanoseconds>(interval).count();
   cout << "Time taken to execute fft (excluding time taken to generate input): " << duration << "\n";
 }
