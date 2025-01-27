@@ -11,7 +11,8 @@ mkdir meminfo_output
 mkdir ps_output
 sbatch myjob  
 ```  
-Once finished, the output folders (free_output, meminfo_output, etc) 
+Once finished, the output folders (free_output, meminfo_output, etc) will be populated with information about memory usage.
+There will also be a file called output.log which will contain information about the runtime for each program execution. 
 ## locally
 You will need to install fftw, reference:  
 https://www.fftw.org/fftw2_doc/fftw_6.html 
