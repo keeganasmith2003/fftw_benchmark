@@ -15,7 +15,6 @@ int main(int argc, char* argv[]){
     compute_fft(N, num_threads);
   }
   else{
-    cout << "seg fault happened here1\n";
-	  compute_fft(N);
+    cout << "did not specify number of threads\n";
   }
 }
