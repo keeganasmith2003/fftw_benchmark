@@ -1,0 +1,16 @@
+#!/bin/bash
+#SBATCH --job-name=generate_random_nums
+#SBATCH --time=00:30:00 --mem=480G
+#SBATCH --ntasks=1 --nodes=1 --cpus-per-task=64
+#SBATCH --output=out --error=error
+#SBATCH --partition=cpu 
+
+module purge
+cd /scratch/user/u.ks124812/
+# ADD YOUR COMMANDS BELOW
+ml GCC/13.2.0
+ml FFTW/3.3.10
+
+cd /scratch/user/u.ks124812/wes_benchmarking/fft
+make fft_parallel
+./multi_compute_fft

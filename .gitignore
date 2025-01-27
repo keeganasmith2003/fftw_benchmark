@@ -1,4 +1,7 @@
 compute_fft
 multi_compute_fft
 error
+runner
 out
+*.log
+
