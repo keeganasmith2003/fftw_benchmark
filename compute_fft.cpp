@@ -29,7 +29,7 @@ void compute_fft(const int n, const int num_threads){
   cout << "Time taken to execute fft (excluding time taken to generate input): " << duration << "\n";
   fftw_destroy_plan(plan);
   fftw_free(in); fftw_free(out);
-  fftw_cleanup_threads()
+  fftw_cleanup_threads();
 }
 // void compute_fft(long long n, int num_threads){
 //   fftw_init_threads();

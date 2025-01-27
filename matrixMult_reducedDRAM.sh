@@ -10,7 +10,7 @@ module load GCC/13.2.0 FFTW/3.3.10
 cd /scratch/user/u.ks124812/wes_benchmarking/fft
 make fft
 
-for i in 16 32 64 96; do
+for i in 2 4 8 16 32 64 96; do
   watch "cat /proc/meminfo >> ./meminfo_output/meminfo_$i.log; date+"%Y-%m-%dT%H:%M:%S%z" >> ./meminfo_output/meminfo_$i.log" &> /dev/null &
   watch "ps -p $(pgrep -f "runner") -o %cpu,%mem,cmd --no-headers >>./ps_output/ps_output_$i.log; date +'%Y-%m-%dT%H:%M:%S%z' >> ./ps_output/ps_output_$i.log" &> /dev/null &
   watch "free -h >> ./free_output/free_output_$i.log;  date +'%Y-%m-%dT%H:%M:%S%z' >>./free_output/free_output_$i.log" &> /dev/null &

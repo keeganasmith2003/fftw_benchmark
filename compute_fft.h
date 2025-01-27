@@ -1,2 +1,2 @@
 #include "common.h"
-void compute_fft(long long n, int num_threads);
+void compute_fft(int n, int num_threads);
