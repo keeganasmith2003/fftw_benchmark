@@ -16,7 +16,7 @@ void compute_fft(long long n, int num_threads){
   for(int i = 0; i < num_threads; i++){
     ins[i] = (fftw_complex*) fftw_malloc(sizeof(fftw_complex) * n);
     outs[i] = (fftw_complex*) fftw_malloc(sizeof(fftw_complex) * n);
-    plans[i] = fftw_plan_dft_1d(n, in, out, FFTW_FORWARD, FFTW_ESTIMATE);
+    plans[i] = fftw_plan_dft_1d(n, ins[i], outs[i], FFTW_FORWARD, FFTW_ESTIMATE);
   }
   auto start = clock_type::now();
   cout << "starting parallel section\n";
