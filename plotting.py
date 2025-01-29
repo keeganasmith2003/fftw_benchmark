@@ -1,9 +1,10 @@
 import numpy as np
 import matplotlib.pyplot as plt
-
+from datetime import datetime
+from dateutil import parser
 NUM_SAMPLES = 0
-FILE = open('./meminfo_output_run_0/meminfo_64.log')
-WATCH_SECONDS = 2
+FILE = open('./meminfo_output_run_0/meminfo_48.log')
+WATCH_SECONDS = 1 
 def parse_meminfo():
     meminfo = {}
     dates = []
@@ -19,16 +20,16 @@ def parse_meminfo():
             meminfo[line.split()[0].strip(':')].append(line.split()[1])
         else:
             meminfo[line.split()[0].strip(':')] = [meminfo[line.split()[0].strip(':')], line.split()[1]]
-    return meminfo
+    return meminfo, dates
 
-def plot(attribute, meminfo):
+def convert_to_datetime(dt_string):
+    return parser.parse(dt_string).timestamp()
+
+def plot(attribute, meminfo, dates):
     y_data = list(map(int, meminfo[attribute]))
+    x_data = list(map(convert_to_datetime, dates))
     # Data for plotting
     t = np.arange(0.0, len(y_data) * WATCH_SECONDS, WATCH_SECONDS)
-    print(y_data)
-    print(t)
-    print("length of y data: ", len(y_data))
-    print("length of x data: ", len(t))
     fig, ax = plt.subplots()
     ax.plot(t, y_data)
 
@@ -38,8 +39,8 @@ def plot(attribute, meminfo):
 
 
 def main():
-    meminfo = parse_meminfo()
-    plot("MemFree", meminfo)
+    meminfo, dates = parse_meminfo()
+    plot("MemFree", meminfo, dates)
     # OUT.write('Time'+',')
     # for each in meminfo:
     #    OUT.write(each + ',')
