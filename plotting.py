@@ -25,10 +25,9 @@ def plot(attribute, meminfo):
     y_data = meminfo[attribute]
     # Data for plotting
     t = np.arange(0.0, len(y_data) * WATCH_SECONDS, WATCH_SECONDS)
-    s = 1 + np.sin(2 * np.pi * t)
 
     fig, ax = plt.subplots()
-    ax.plot(t, s)
+    ax.plot(t, y_data)
 
     ax.set(xlabel='time (s)', ylabel=attribute,
         title=f'{attribute} vs. time')
