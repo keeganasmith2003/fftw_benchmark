@@ -4,4 +4,7 @@ error
 runner
 out
 *.log
-
+figures
+venv
+__pycache__
+*.csv

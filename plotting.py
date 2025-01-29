@@ -22,16 +22,18 @@ def parse_meminfo():
     return meminfo
 
 def plot(attribute, meminfo):
-    y_data = meminfo[attribute]
+    y_data = list(map(int, meminfo[attribute]))
     # Data for plotting
     t = np.arange(0.0, len(y_data) * WATCH_SECONDS, WATCH_SECONDS)
-
+    print(y_data)
+    print(t)
+    print("length of y data: ", len(y_data))
+    print("length of x data: ", len(t))
     fig, ax = plt.subplots()
     ax.plot(t, y_data)
 
     ax.set(xlabel='time (s)', ylabel=attribute,
         title=f'{attribute} vs. time')
-    ax.grid()
     fig.savefig(f"./figures/{attribute}.png")
 
 
@@ -40,7 +42,7 @@ def main():
     plot("MemFree", meminfo)
     # OUT.write('Time'+',')
     # for each in meminfo:
-    #     OUT.write(each + ',')
+    #    OUT.write(each + ',')
     # OUT.write('\n')
     # for i in range(0,int(len(dates))):
     #     OUT.write(dates[i].strip()+',')

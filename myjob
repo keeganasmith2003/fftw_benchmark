@@ -3,6 +3,7 @@
 #SBATCH --time=2:00:00 --mem=480G
 #SBATCH --ntasks=1 --nodes=1 --cpus-per-task=96
 #SBATCH --output=out.log --error=error.log
+#SBATCH --partition=cpu
 module purge
 module load GCC/13.2.0 FFTW/3.3.10
 

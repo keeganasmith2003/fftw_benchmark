@@ -4,7 +4,8 @@ double generate_random_number(){
 } 
 void populate_input(int n, fftw_complex* in){
 	srand(42);
-	for(int i = 0; i < n; i++){
+  #pragma omp parallel for	
+  for(int i = 0; i < n; i++){
 		in[i][0] = generate_random_number();
 		in[i][1] = generate_random_number();
 	}
