@@ -48,3 +48,5 @@ def main():
     #     for each in meminfo:
     #         OUT.write(meminfo[each][i] + ',')
     #     OUT.write('\n')
+if __name__ == "__main__":
+    main()
